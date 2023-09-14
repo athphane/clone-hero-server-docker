@@ -14,5 +14,8 @@ if [ -z "$NAME" ] || [ -z "$PASSWORD" ] || [ -z "$IP" ] || [ -z "$PORT" ]; then
     exit 1
 fi
 
+echo $NAME
+echo $PASSWORD
+
 # Assuming cloneheroserver is in your PATH, you can directly run it
 cloneheroserver -n "$NAME" -d -ps "$PASSWORD"
