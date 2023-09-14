@@ -4,7 +4,7 @@ services:
     build:
       context: .
     ports:
-      - "14242:14242"
+      - "127.0.0.1:14242:14242"
     volumes:
       - ./config:/usr/src/clonehero/config
     container_name: clone-hero-server
