@@ -18,4 +18,4 @@ echo $NAME
 echo $PASSWORD
 
 # Assuming cloneheroserver is in your PATH, you can directly run it
-cloneheroserver -n "$NAME" -d -ps "$PASSWORD"
+cloneheroserver -n $NAME -d -ps $PASSWORD
