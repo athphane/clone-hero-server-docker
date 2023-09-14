@@ -11,7 +11,7 @@ RUN apt-get update \
 
 COPY ./startup.sh .
 
-COPY ./server-settings.ini ./config/
+COPY ./config/server-settings.ini ./config/
 
 RUN wget -qO chserver.zip https://github.com/clonehero-game/releases/releases/latest/download/CloneHero-standalone_server.zip \
  && unzip chserver.zip \
