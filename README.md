@@ -2,10 +2,21 @@
 
 Docker image for Clone Hero dedicated server software. Available on [Docker Hub](https://hub.docker.com/r/corysanin/clone-hero-server).
 
-```$ docker run --rm -p 14242:14242/udp corysanin/clone-hero-server:latest```
+Clone the repository and start the server with Docker Compose:
 
-The Docker image exposes port 14242 for network communication by default. This can be configured in `settings.ini`
+```bash
+docker compose up
+```
 
-`settings.ini` is stored in `/usr/src/config`. So if you want to modify it, create a `config` directory and use:
+Server settings can be customised with environment variables:
 
-```$ docker run --rm -p 14242:14242/udp -v $(pwd)/config:/usr/src/config corysanin/clone-hero-server:latest```
+- `SERVER_NAME` – name shown in the server browser (default `clone-hero-server-docker`)
+- `SERVER_PASSWORD` – password required to join the server
+- `CONNECT_IP` – IP address to bind (default `0.0.0.0`)
+- `CONNECT_PORT` – UDP port to listen on (default `14242`)
+
+Example:
+
+```bash
+SERVER_NAME="My Server" SERVER_PASSWORD="secret" docker compose up
+```
