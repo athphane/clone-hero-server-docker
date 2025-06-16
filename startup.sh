@@ -1,21 +1,28 @@
 #!/bin/bash
+set -e
 
-function get_property {
-    sed -n "s/^$2 *= *//p" "$1"
+# Helper to read values from the legacy ini file if present
+get_property() {
+    sed -n "s/^$2 *= *//p" "$1" 2>/dev/null
 }
 
-NAME=$(get_property ./server-settings.ini serverName)
-PASSWORD=$(get_property ./server-settings.ini connectPassword)
-IP=$(get_property ./server-settings.ini connectip)
-PORT=$(get_property ./server-settings.ini connectPort)
+# Allow configuration via environment variables with optional fallbacks to
+# `server-settings.ini` for backwards compatibility.
+NAME=${SERVER_NAME:-$(get_property ./server-settings.ini serverName)}
+PASSWORD=${SERVER_PASSWORD:-$(get_property ./server-settings.ini connectPassword)}
+IP=${CONNECT_IP:-$(get_property ./server-settings.ini connectip)}
+PORT=${CONNECT_PORT:-$(get_property ./server-settings.ini connectPort)}
 
-if [ -z "$NAME" ] || [ -z "$PASSWORD" ] || [ -z "$IP" ] || [ -z "$PORT" ]; then
-    echo "One or more properties not found in server-settings.ini"
-    exit 1
-fi
+# Validate required values
+: "${NAME:?SERVER_NAME not set and serverName missing in server-settings.ini}" \
+  "${PASSWORD:?SERVER_PASSWORD not set and connectPassword missing in server-settings.ini}" \
+  "${IP:?CONNECT_IP not set and connectip missing in server-settings.ini}" \
+  "${PORT:?CONNECT_PORT not set and connectPort missing in server-settings.ini}"
 
-echo $NAME
-echo $PASSWORD
+echo "Starting Clone Hero server with:"
+echo "  Name: $NAME"
+echo "  IP:   $IP"
+echo "  Port: $PORT"
 
-# Assuming cloneheroserver is in your PATH, you can directly run it
-cloneheroserver -n "PANGuitarHero" -d -ps password
+# Run the dedicated server
+exec cloneheroserver -n "$NAME" -ip "$IP" -p "$PORT" -ps "$PASSWORD" -d
