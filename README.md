@@ -1,6 +1,6 @@
 # Clone Hero Server Docker 🎸 🥁 🐳
 
-Docker image for running a Clone Hero dedicated server. This project was forked from the original [GitLab repository by corysanin/clone-hero-server](https://gitlab.com/corysanin/clone-hero-server).
+Docker image for running a Clone Hero dedicated server. This project was forked from the original [GitLab repository by corysanin/clone-hero-server](https://gitlab.com/CorySanin/clone-hero-server-docker).
 
 ## Compatibility
 
