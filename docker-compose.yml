@@ -1,13 +1,13 @@
 version: '3'
 services:
   clone-hero-server:
-    build:
-      context: .
+    build: .
     ports:
-      - "127.0.0.1:14242:14242"
-    volumes:
-      - ./config:/usr/src/clonehero/config
-    container_name: clone-hero-server
+      - "14242:14242/udp"
     environment:
-      - DEBIAN_FRONTEND=noninteractive
+      SERVER_NAME: ${SERVER_NAME:-clone-hero-server-docker}
+      SERVER_PASSWORD: ${SERVER_PASSWORD:-password}
+      CONNECT_IP: ${CONNECT_IP:-0.0.0.0}
+      CONNECT_PORT: ${CONNECT_PORT:-14242}
+    container_name: clone-hero-server
     restart: unless-stopped
