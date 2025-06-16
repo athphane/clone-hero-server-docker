@@ -20,3 +20,14 @@ Example:
 ```bash
 SERVER_NAME="My Server" SERVER_PASSWORD="secret" docker compose up
 ```
+
+## Publishing to GitHub Container Registry
+
+A GitHub Actions workflow is provided to automatically build and publish the
+Docker image to the GitHub Container Registry whenever changes are pushed to the
+`main` branch. Ensure that the `GHCR` permissions are enabled for the repository
+and that the workflow has access to `GITHUB_TOKEN`.
+
+To trigger the workflow manually, navigate to the "Actions" tab on GitHub and
+run the *Build and publish to GHCR* workflow.
+
