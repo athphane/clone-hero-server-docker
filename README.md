@@ -1,33 +1,44 @@
-# clone-hero-server 🎸 🥁 🐳
+# Clone Hero Server Docker 🎸 🥁 🐳
 
-Docker image for Clone Hero dedicated server software. Available on [Docker Hub](https://hub.docker.com/r/corysanin/clone-hero-server).
+Docker image for running a Clone Hero dedicated server. This project was forked from the original [GitLab repository by corysanin/clone-hero-server](https://gitlab.com/corysanin/clone-hero-server).
 
-Clone the repository and start the server with Docker Compose:
+## Compatibility
+
+This Docker image is currently built for Clone Hero version **v1.0.0.4080-final**.
+
+## Quick Start
+
+Create a docker-compose.yml file like the sample below in the Configuration section, then run:
 
 ```bash
 docker compose up
 ```
 
-Server settings can be customised with environment variables:
+## Configuration
 
-- `SERVER_NAME` – name shown in the server browser (default `clone-hero-server-docker`)
-- `SERVER_PASSWORD` – password required to join the server
-- `CONNECT_IP` – IP address to bind (default `0.0.0.0`)
-- `CONNECT_PORT` – UDP port to listen on (default `14242`)
+Server settings can be customized using environment variables in your docker-compose.yml file:
 
-Example:
+| Variable | Description | Default Value |
+|----------|-------------|---------------|
+| `SERVER_NAME` | Name shown in the server browser | `clone-hero-server-docker` |
+| `SERVER_PASSWORD` | Password required to join the server | `password` |
+| `CONNECT_IP` | IP address to bind | `0.0.0.0` |
+| `CONNECT_PORT` | UDP port to listen on | `14242` |
 
-```bash
-SERVER_NAME="My Server" SERVER_PASSWORD="secret" docker compose up
+### Sample docker-compose.yml
+
+```yaml
+services:
+  clone-hero-server:
+    build: .
+    ports:
+      - "14242:14242/udp"
+    environment:
+      SERVER_NAME: "My Clone Hero Server"
+      SERVER_PASSWORD: "rockon"
+      CONNECT_IP: 0.0.0.0
+      CONNECT_PORT: 14242
+    container_name: clone-hero-server
+    restart: unless-stopped
 ```
-
-## Publishing to GitHub Container Registry
-
-A GitHub Actions workflow is provided to automatically build and publish the
-Docker image to the GitHub Container Registry whenever changes are pushed to the
-`main` branch. Ensure that the `GHCR` permissions are enabled for the repository
-and that the workflow has access to `GITHUB_TOKEN`.
-
-To trigger the workflow manually, navigate to the "Actions" tab on GitHub and
-run the *Build and publish to GHCR* workflow.
 
