@@ -25,4 +25,4 @@ echo "  IP:   $IP"
 echo "  Port: $PORT"
 
 # Run the dedicated server
-exec cloneheroserver -n "$NAME" -ip "$IP" -p "$PORT" -ps "$PASSWORD" -d
+exec cloneheroserver --name "$NAME" --port "$PORT" --address "$IP" --password "$PASSWORD"
