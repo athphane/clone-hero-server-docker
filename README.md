@@ -30,12 +30,12 @@ Server settings can be customized using environment variables in your docker-com
 ```yaml
 services:
   clone-hero-server:
-    build: .
+    image: ghcr.io/athphane/clone-hero-server-docker:latest
     ports:
-      - "14242:14242/udp"
+      - "14242:14242"
     environment:
       SERVER_NAME: "My Clone Hero Server"
-      SERVER_PASSWORD: "rockon"
+      SERVER_PASSWORD: rockon
       CONNECT_IP: 0.0.0.0
       CONNECT_PORT: 14242
     container_name: clone-hero-server
