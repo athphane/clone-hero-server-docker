@@ -32,7 +32,7 @@ services:
   clone-hero-server:
     image: ghcr.io/athphane/clone-hero-server-docker:latest
     ports:
-      - "14242:14242"
+      - "14242:14242/udp"
     environment:
       SERVER_NAME: "My Clone Hero Server"
       SERVER_PASSWORD: rockon
