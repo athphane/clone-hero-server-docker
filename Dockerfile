@@ -13,7 +13,7 @@ COPY ./startup.sh .
 
 COPY ./config/server-settings.ini ./config/
 
-RUN wget -qO chserver.zip https://github.com/clonehero-game/releases/releases/latest/download/CloneHero-standalone_server.zip \
+RUN wget -qO chserver.zip https://github.com/clonehero-game/releases/releases/latest/download/CloneHero-StandaloneServer.zip \
     && unzip chserver.zip \
     && rm ./chserver.zip \
     && mv ChStandaloneServer-*/linux-x64/Server ./clone-hero-server \
