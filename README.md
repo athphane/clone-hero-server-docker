@@ -4,7 +4,7 @@ Docker image for running a Clone Hero dedicated server. This project was forked 
 
 ## Compatibility
 
-This Docker image is currently built for Clone Hero version **v1.0.0.4080-final**.
+This Docker image is currently built for Clone Hero version **v1.1.0.6142-final**.
 
 ## Quick Start
 
